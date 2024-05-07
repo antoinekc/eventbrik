@@ -36,9 +36,10 @@
               </div>
 
               <div class="form-group">
-                <%= f.label :duration %>
-                <%= f.text_field :duration, class: "form-control", placeholder: "Durée de l'événement (en heures)" %>
+                <label for="duration">Durée de l'événement (en minutes, multiple de 5)</label>
+                <input type="number" id="duration" name="event[duration]" class="form-control" placeholder="Durée de l'événement (en minutes)" step="5" min="5" required>
               </div>
+
 
               <div class="form-group">
                 <%= f.label :price %>

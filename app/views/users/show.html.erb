@@ -1,10 +1,18 @@
-<p style="color: green"><%= notice %></p>
+<h1>Profil de <%= @user.full_name %></h1>
 
-<%= render @user %>
+<p>Prénom: <%= @user.first_name %></p>
+<p>Nom: <%= @user.last_name %></p>
+<p>Description: <%= @user.description %></p>
+<p>Email: <%= @user.email %></p>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+<h2>Événements créés par <%= @user.first_name %></h2>
+<ul>
+  <% @events.each do |event| %>
+    <li><%= link_to event.title, event_path(event) %></li>
+  <% end %>
+</ul>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
-</div>
+<% if current_user == @user %>
+  <%= link_to "Modifier mon email et mot de passe", edit_user_registration_path %>
+  <%= link_to "Éditer mes informations de profil", edit_user_path(current_user) %>
+<% end %>
