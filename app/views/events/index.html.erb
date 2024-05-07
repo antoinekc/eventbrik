@@ -1,14 +1,35 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page d'accueil - Liste des événements</title>
+  <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css", integrity: "sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk", crossorigin: "anonymous" %>
+  <%= javascript_include_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js", integrity: "sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI", crossorigin: "anonymous" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-<h1>Events</h1>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Bienvenue sur notre site d'événements !</h1>
+      <p class="lead">Découvrez tous les événements passionnants organisés près de chez vous.</p>
+      <a class="btn btn-primary btn-lg" href="<%= new_event_path %>" role="button">Créer un événement</a>
+    </div>
+  </div>
 
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
-</div>
+  <div class="container">
+    <h2>Liste des événements</h2>
+    <% @events.each do |event| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= event.title %></h5>
+          <p class="card-text"><%= event.description %></p>
+          <a href="<%= event_path(event) %>" class="btn btn-primary">Voir cet événement</a>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-<%= link_to "New event", new_event_path %>
+</body>
+</html>

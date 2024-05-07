@@ -2,8 +2,6 @@
 <html>
   <head>
     <title>Eventbrik</title>
-
-    <head>
     <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css", integrity: "sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk", crossorigin: "anonymous" %>
     <%= javascript_include_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js", integrity: "sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI", crossorigin: "anonymous" %>
     <%= javascript_include_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js", integrity: "sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd", crossorigin: "anonymous" %> 
@@ -12,19 +10,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <!--a class="navbar-brand" href="#">Eventbrite</a>-->
   <%= link_to "EventBrite", root_path, class: "nav-link" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -39,22 +37,29 @@
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          S'inscrire / Se connecter
+          Connexion
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="registrations#new">S'inscrire</a>
-          <a class="dropdown-item" href="sessions#new">Se connecter</a>
-        </div>
+            <div class="d-flex flex-column">
+              <% unless user_signed_in? %>
+                <%= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Se connecter", new_user_session_path, class: "dropdown-item" %>
+              <% else %>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+              <% end %>
+            </div>
+          </div>
       </li>
     </ul>
   </div>
 </nav>
-</body>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<%= yield %>
 
   </body>
 </html>

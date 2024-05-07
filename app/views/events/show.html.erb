@@ -1,10 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details</title>
+  <%= stylesheet_link_tag "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css", integrity: "sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk", crossorigin: "anonymous" %>
+  <style>
+    .event-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      margin-top: 50px;
+    }
+    .event-container h2 {
+      text-align: center;
+    }
+    .event-container .actions {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="event-container">
+    <h2>Event Details</h2>
 
-<%= render @event %>
+    <%= render @event %>
 
-<div>
-  <%= link_to "Edit this event", edit_event_path(@event) %> |
-  <%= link_to "Back to events", events_path %>
-
-  <%= button_to "Destroy this event", @event, method: :delete %>
-</div>
+    <div class="actions">
+      <%= link_to "Edit this event", edit_event_path(@event), class: "btn btn-primary" %> |
+      <%= link_to "Back to events", events_path, class: "btn btn-secondary" %>
+      <%= button_to "Destroy this event", @event, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
+</body>
+</html>
