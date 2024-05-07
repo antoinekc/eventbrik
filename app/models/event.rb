@@ -17,4 +17,8 @@ class Event < ApplicationRecord
     errors.add(:start_date, "must be in the future") if start_date.present? && start_date <= Date.today
   end
 
+  # def confirmation_send
+  #   UserMailer.confirmation_email(self).deliver_now
+  # end
+
 end

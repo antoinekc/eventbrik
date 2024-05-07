@@ -73,3 +73,5 @@ gem "better_errors", "~> 2.10"
 gem "table_print", "~> 1.5"
 
 gem "letter_opener", "~> 1.10"
+
+gem 'devise', '~> 4.2'
